@@ -1,0 +1,10 @@
+module full_adder(
+  input a, b, c,
+  output sum, carry);
+  
+  assign sum = a ^ b ^ c;
+  assign carry = (((a^b) & c) | (a & b));
+  
+endmodule  
+
+// https://edaplayground.com/x/PNdL
