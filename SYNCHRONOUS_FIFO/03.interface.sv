@@ -14,7 +14,5 @@ interface intf #(parameter WIDTH = 8,
   logic [WIDTH -1:0]	data_out;
   logic					full;
   logic					empty;
-  
-  // driver clocking block
-//   clocking 
+
 endinterface
