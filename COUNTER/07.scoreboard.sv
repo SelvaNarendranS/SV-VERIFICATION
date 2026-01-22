@@ -12,50 +12,6 @@ class scoreboard #(parameter WIDTH);
     this.mon2scr = mon2scr;
   endfunction
   
-//   // getting values from mailbox to evaluate
-//   task value(output bit rst, en, up_dn, output bit [WIDTH - 1:0]cnt);
-    
-//     mon2scr.get(trans);
-//     rst   = trans.reset;
-//     en    = trans.enable;
-//     up_dn = trans.up_down;
-//     cnt   = trans.q;
-      
-//     trans.display("Value received to SCOREBOARD");
-//   endtask
-    
-//   // self checking
-//   task selfcheck();
-//     bit[WIDTH - 1:0] q;
-//     bit reset, enable, up_down;
-//     bit[WIDTH - 1:0] expected = 0;
-    
-// //     repeat((2**WIDTH)*3) begin
-//     repeat(WIDTH) begin
-      
-//       value(reset, enable, up_down, q);				// calling value task 
-//      if(reset)
-//        expected = 0;
-//       else if(enable) begin
-//         if(up_down)
-//           expected++;
-//         else
-//           expected--;
-//       end
-      
-//       if(expected == q) begin
-//         $display("--------------------------------------");
-//         $display("                 PASS                 ");  
-//         $display("--------------------------------------");
-//       end
-//       else begin
-//         $display("--------------------------------------");
-//         $display("                 FAIL                 ");  
-//         $display("--------------------------------------");
-//       end
-//     end
-//   endtask
-  
   // task main 
   task scr_main();
     
@@ -90,4 +46,5 @@ class scoreboard #(parameter WIDTH);
     end
       
   endtask
+
 endclass
