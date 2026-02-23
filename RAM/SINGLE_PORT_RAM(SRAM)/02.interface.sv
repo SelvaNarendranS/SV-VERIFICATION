@@ -1,9 +1,6 @@
 // Single port ram - interface
 interface intf #(parameter WIDTH = 8, 
-                 parameter DEPTH = 4);		// paramaterized interface
-
-  // system
-  logic						clk;
+                 parameter DEPTH = 4) (input logic clk);		// paramaterized interface
   
   // input ports
   logic 					en;
