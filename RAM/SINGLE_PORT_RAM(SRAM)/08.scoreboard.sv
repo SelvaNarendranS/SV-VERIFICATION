@@ -4,6 +4,7 @@ class scoreboard #(WIDTH, DEPTH);
   
   mailbox mon2scb;		// mailbox b/w generator and driver
   transaction #(WIDTH, DEPTH) trans;		// transaction handle
+  coverage #(WIDTH, DEPTH) cov;				// coverage handle
   int count = 1;
   
   // event for next stimuli generation
@@ -14,6 +15,11 @@ class scoreboard #(WIDTH, DEPTH);
     this.mon2scb = mon2scb;
   endfunction
   
+  // setting coverage to scoreboard
+  function void set_coverage(coverage #(WIDTH, DEPTH) cov);
+    this.cov = cov;
+  endfunction
+  
   // single port ram memory
   reg [WIDTH-1:0]mem[int];			// associative array for depth of spram memory locations
   
@@ -21,6 +27,9 @@ class scoreboard #(WIDTH, DEPTH);
     for(int i=0; i < ((DEPTH * 2) + 1); i++) begin
       mon2scb.get(trans);
       check(trans);
+      
+      if(cov != null)
+        cov.coverage_report();			// calling function in coverage to print report of coverage
       
       count++;
       ->next;		// event trigger
@@ -86,12 +95,12 @@ class scoreboard #(WIDTH, DEPTH);
     if(expected_data_out == data_out) begin
       $display("--------------------------------------------");
       $display("                    PASS");
-      $display("--------------------------------------------\n");
+      $display("--------------------------------------------");
     end
     else begin
       $display("--------------------------------------------");
       $display("                    FAIL                     expected = %0d", expected_data_out);
-      $display("--------------------------------------------\n");
+      $display("--------------------------------------------");
     end
     
   endfunction
