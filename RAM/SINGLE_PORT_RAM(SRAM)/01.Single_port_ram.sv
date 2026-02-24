@@ -41,3 +41,5 @@ module single_port_ram #(parameter WIDTH = 8,
 //   end
   
 endmodule
+
+// https://edaplayground.com/x/Manb
