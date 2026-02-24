@@ -5,9 +5,11 @@ class monitor #(WIDTH, DEPTH);
   transaction #(WIDTH, DEPTH) trans;			// transaction handle
   virtual intf #(WIDTH, DEPTH) vintf;		// virtual interface
   mailbox mon2scb;				// mailbox b/w monitor to scoreboard
+  mailbox mon2cov;				// mailbox b/w monitor to coverage
   
-  function new(mailbox mon2scb, virtual intf #(WIDTH, DEPTH) vintf);
+  function new(mailbox mon2scb, mailbox mon2cov, virtual intf #(WIDTH, DEPTH) vintf);
     this.mon2scb = mon2scb;
+    this.mon2cov = mon2cov;
     this.vintf = vintf;
   endfunction
   
@@ -25,6 +27,7 @@ class monitor #(WIDTH, DEPTH);
       trans.data_out	= vintf.cb_monitor.data_out;
     
       mon2scb.put(trans);
+      mon2cov.put(trans);
       trans.display("MONITOR VALUES");
     end
   endtask
