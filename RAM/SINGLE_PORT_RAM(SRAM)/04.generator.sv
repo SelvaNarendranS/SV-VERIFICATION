@@ -57,6 +57,7 @@ class generator #(WIDTH, DEPTH);
     trans.data_in.rand_mode(0);
     trans.randomize();
     trans.wr_en = 0;
+    trans.en = 1;
     
     gen2drv.put(trans);				// putting transaction packets to mailbox
     trans.display("READ GENERATED VALUES ");
@@ -74,4 +75,5 @@ class generator #(WIDTH, DEPTH);
     trans.display(" DISABLE GENERATED VALUES ");
   endtask
   
+
 endclass
