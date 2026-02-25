@@ -31,6 +31,11 @@ class scoreboard #(WIDTH, DEPTH);
       if(cov != null)
         cov.coverage_report();			// calling function in coverage to print report of coverage
       
+      if(count >= (DEPTH*2)+1) begin
+        if(cov.sram_cg.get_coverage() > 95)
+          $display("THE TOTAL FUNCTIONAL COVERAGE = 100.00%%" );
+      end
+      
       count++;
       ->next;		// event trigger
       
