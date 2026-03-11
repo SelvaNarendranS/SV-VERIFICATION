@@ -14,7 +14,7 @@ module async_fifo #(parameter WIDTH = 8,
   input						 rd_en,
   output logic [WIDTH -1 :0] data_out,
   output 					 empty
-);
+); 
   
   // local parameter
   localparam PTR_WIDTH = $clog2(DEPTH);
@@ -110,4 +110,4 @@ module async_fifo #(parameter WIDTH = 8,
   assign full = gray_wr_ptr == ({~(gray_rd_ptr_sync2[PTR_WIDTH : PTR_WIDTH - 1]), (gray_rd_ptr_sync2[PTR_WIDTH-2 : 0])});   	// gray write pointer == {~(sync gray read pointer[MSB] and sync gray read pointer[MSB-1]), remaining sync gray read pointer bits ------  01_100 = (original : 01_100 -- inverted : 10_100)
 endmodule
 
-// https://edaplayground.com/x/cD8R
+// https://edaplayground.com/x/7Qbk
